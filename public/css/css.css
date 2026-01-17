@@ -1,0 +1,27 @@
+/* Target the active pagination link */
+.pagination .active span,
+.pagination .active a {
+    background-color: #4f46e5; /* Indigo-600 for example */
+    color: white;              /* Text color */
+    opacity: 0.5;              /* 50% opacity */
+}
+
+
+/* Active page number */
+[aria-current="page"] > span {
+    background-color: #4f46e5 !important; /* Indigo-600 */
+    color: #fff !important;
+    opacity: 0.5;
+    border-color: #4f46e5 !important;
+}
+
+/* Inactive page buttons */
+button[wire\\:click] {
+    background-color: #fff;
+    color: #374151; /* gray-700 */
+    opacity: 1;
+}
+
+button[wire\\:click]:hover {
+    color: #4f46e5; /* Indigo hover */
+}
