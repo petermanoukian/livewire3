@@ -6,18 +6,6 @@
         {{ $showForm ? 'Hide Form' : 'Add New Cat' }}
     </button>
 
-    {{-- Flash message --}}
-    @if ($flashMessage)
-        <div x-data="{ show: true }"
-            x-show="show"
-            x-init="setTimeout(() => show = false, 4000)"
-            x-transition.opacity.duration.1000ms
-            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            {{ $flashMessage }}
-        </div>
-    @endif
-
-
     @if($showForm)
     <h3 class="text-lg font-semibold mb-4">
         {{ $isEdit ? 'Edit Category' : 'New Category' }}
@@ -113,21 +101,30 @@
                 class="ml-2 px-4 py-2 bg-gray-500 text-white rounded">
                 Cancel
             </button>
+        
+        @endif
+        </form>
         @endif
 
-        @if ($flashMessage)
-            <div x-data="{ show: true }"
-                x-show="show"
-                x-init="setTimeout(() => { show = false; $wire.set('showForm', false) }, 4000)"
-                x-transition.opacity.duration.1000ms
-                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ $flashMessage }}
-            </div>
-        @endif
+@if ($showFlash)
+    <div
+        wire:key="flash-{{ $flashKey }}-visible"
+        class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4"
+    >
+        {{ $flashMessage }}
+    </div>
+@endif
 
-
-        @endif
-
-
-    </form>
 </div>
+
+<script>
+document.addEventListener('livewire:init', () => {
+    Livewire.on('auto-hide-flash', () => {
+        setTimeout(() => {
+            Livewire.dispatch('clear-flash');
+        }, 4000);
+    });
+});
+</script>
+
+

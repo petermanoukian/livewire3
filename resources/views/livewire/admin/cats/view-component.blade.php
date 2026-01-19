@@ -8,26 +8,7 @@
 
     <hr class="flex items-center mb-4 space-x-4 mt-8">
 
-    <div class="flex items-center mb-4 space-x-4 mt-4">
-        <div>
-            <label>Records per page:</label>
-            <select wire:model.live="perPage" class="border rounded px-2 py-1">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Search:</label>
-            <input type="text"
-                wire:model.live.debounce.500ms ="search"
-                class="border rounded px-2 py-1"
-                placeholder="Search cats...">
-        </div>
-    </div>
+    @include('livewire.admin.common._search')
 
 
     <form wire:submit.prevent="deleteSelected">
@@ -101,6 +82,11 @@
                                     class="text-red-600 hover:underline">
                                 Delete
                             </button>
+
+                            <a href="{{ route('admin.subcats.index', ['catid' => $cat->id]) }}"
+                                class="text-green-600 mr-2 underline">
+                                    Subcategories
+                            </a>
 
                         </td>
 

@@ -10,7 +10,8 @@ Route::prefix('admin')
         Route::get('/dashboard', [HomeController::class, 'index'])
             ->name('admin.dashboard');
 
-        // Include classic cat routes
+ 
         require __DIR__ . '/classic/cat.php';
+        require __DIR__ . '/classic/subcat.php';
     });
 

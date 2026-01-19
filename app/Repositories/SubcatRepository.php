@@ -1,26 +1,25 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Subcat;
 use App\Models\Cat;
 
-class CatRepository
+class SubcatRepository
 {
-    /**
-     * Get all records
-     */
+
     public function all(
         array $fields = ['*'],
         array $filters = [],
         array $with = [],
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Subcat::select($fields);
 
         if ($with) {
             $query->with($with);
         }
 
-        // INLINE FILTERS
+       
         foreach ($filters as $field => $value) {
             if (is_string($value)) {
                 $query->where($field, 'like', "%{$value}%");
@@ -29,7 +28,7 @@ class CatRepository
             }
         }
 
-        // INLINE ORDER
+        
         foreach ($orderBy as $column => $direction) {
             $query->orderBy($column, $direction);
         }
@@ -37,35 +36,37 @@ class CatRepository
         return $query->get();
     }
 
+
     public function paginate(
-        int $perPage = 15,
-        array $fields = ['*'],
-        array $filters = [],
-        array $with = [],
-        array $orderBy = []
-    ) {
-        $query = Cat::select($fields);
+            int $perPage = 15,
+            array $fields = ['*'],
+            array $filters = [],
+            array $with = [],
+            array $orderBy = []
+        ) {
+            $query = Subcat::select($fields);
 
-        if ($with) {
-            $query->with($with);
-        }
-
-       
-        foreach ($filters as $field => $value) {
-            if (is_string($value)) {
-                $query->where($field, 'like', "%{$value}%");
-            } else {
-                $query->where($field, $value);
+            if ($with) {
+                $query->with($with);
             }
+
+        
+            foreach ($filters as $field => $value) {
+                if (is_string($value)) {
+                    $query->where($field, 'like', "%{$value}%");
+                } else {
+                    $query->where($field, $value);
+                }
+            }
+
+            foreach ($orderBy as $column => $direction) {
+                $query->orderBy($column, $direction);
+            }
+
+            return $query->paginate($perPage);
         }
 
-       
-        foreach ($orderBy as $column => $direction) {
-            $query->orderBy($column, $direction);
-        }
 
-        return $query->paginate($perPage);
-    }
 
     public function search(
         string $term,
@@ -75,7 +76,7 @@ class CatRepository
         string $boolean = 'or',
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Subcat::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -103,34 +104,6 @@ class CatRepository
         return $query->get();
     }
 
-
-    public function searchByName(
-        string $term,
-        array $fields = ['id', 'name'],
-        array $with = [],
-        array $orderBy = ['name' => 'asc'] // default
-    ): \Illuminate\Support\Collection
-    {
-        $query = Cat::select($fields);
-
-        if (!empty($with)) {
-            $query->with($with);
-        }
-
-        // Always search by name (string)
-        $query->where('name', 'like', "%{$term}%");
-
-        // Apply ordering dynamically
-        foreach ($orderBy as $column => $direction) {
-            $query->orderBy($column, $direction);
-        }
-
-        return $query->get();
-    }
-
-
-
-
     public function searchPaginated(
         string $term,
         int $perPage = 15,
@@ -140,7 +113,7 @@ class CatRepository
         string $boolean = 'or',
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Subcat::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -168,9 +141,12 @@ class CatRepository
     }
 
 
+
+
+
     public function find(int $id, array $fields = ['*'], array $with = [])
     {
-        $query = Cat::select($fields);
+        $query = Subcat::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -179,9 +155,10 @@ class CatRepository
         return $query->findOrFail($id);
     }
 
-    public function existsByName(string $name, ?int $ignoreId = null): bool
+    public function existsByName(string $name, int $catid, ?int $ignoreId = null): bool
     {
-        $query = Cat::where('name', $name);
+        $query = Subcat::where('name', $name)
+                       ->where('catid', $catid);
 
         if ($ignoreId) {
             $query->where('id', '!=', $ignoreId);
@@ -191,25 +168,65 @@ class CatRepository
     }
 
 
+    public function getParentCat(int $catid, array $fields = ['*'], array $with = [])
+    {
+        $query = Cat::select($fields);
+
+        if ($with) {
+            $query->with($with);
+        }
+
+        return $query->findOrFail($catid);
+    }
+
+
+
+    public function getByCatId(int $catid, array $fields = ['*'], array $with = [])
+    {
+        $query = Subcat::select($fields)->where('catid', $catid);
+
+        if ($with) {
+            $query->with($with);
+        }
+
+        return $query->get();
+    }
+
+    public function searchByName(
+        string $search,
+        int $limit = 50,
+        array $fields = ['*']
+    ) {
+        return Cat::select($fields)
+            ->where('name', 'LIKE', '%' . $search . '%')
+            ->orderBy('name')
+            ->limit($limit)
+            ->get();
+    }
+
+
+
+
     public function create(array $data)
     {
-        return Cat::create($data);
+        return Subcat::create($data);
     }
 
     public function update(int $id, array $data)
     {
-        $cat = Cat::findOrFail($id);
-        $cat->update($data);
-        return $cat;
+        $subcat = Subcat::findOrFail($id);
+        $subcat->update($data);
+        return $subcat;
     }
 
     public function delete(int $id)
     {
-        return Cat::destroy($id);
+        return Subcat::destroy($id);
     }
 
     public function deleteMany(array $ids)
     {
-        return Cat::destroy($ids);
+        return Subcat::destroy($ids);
     }
+
 }

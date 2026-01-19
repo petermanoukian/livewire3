@@ -23,10 +23,6 @@ class ViewComponent extends Component
         return app(CatService::class);
     }
 
-
-
-    
-
     #[On('cat-created')]
     #[On('cat-updated')]
     public function refreshList()
@@ -151,10 +147,6 @@ class ViewComponent extends Component
             [$field => $direction]
         );
     }
-
-
-
-
 
 
 

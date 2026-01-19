@@ -17,11 +17,14 @@
                         Add Category
                     </a>
                 </li>
-
-
-
-
                 <li><a href="{{ route('admin.cats.index') }}" class="block px-4 py-2 hover:bg-gray-100">Manage Categories</a></li>
+                <li>
+                    <a href="{{ route('admin.subcats.index') }}" 
+                    class="block px-4 py-2 hover:bg-gray-100">
+                        Manage Subcategories
+                    </a>
+                </li>
+                
             </ul>
         </div>
     </div>

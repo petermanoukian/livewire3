@@ -78,6 +78,22 @@ class CatService
         return $this->cats->existsByName($name, $ignoreId);
     }
 
+    public function searchByName(
+        string $term,
+        array $fields = ['id', 'name'],
+        array $orderBy = ['name' => 'asc'] // default
+    ) {
+        return $this->cats->searchByName(
+            $term,
+            $fields,
+            [],        // no relations by default
+            $orderBy   // pass dynamic orderBy to repository
+        );
+    }
+
+
+
+
 
     public function create(array $data): Cat
     {

@@ -19,4 +19,10 @@ class Cat extends Model
         'img',
         'img2',
     ];
+
+
+    public function subcats() 
+    { 
+        return $this->hasMany(Subcat::class, 'catid'); 
+    }
 }

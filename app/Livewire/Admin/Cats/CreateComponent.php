@@ -30,6 +30,9 @@ class CreateComponent extends Component
 
     public ?string $flashMessage = null;
     public bool $showForm = false;
+    public bool $showFlash = false;
+    public int $flashKey = 0;
+
 
     protected CatService $cats;
     protected LivewireImageUploadService $imageUpload;
@@ -71,6 +74,12 @@ class CreateComponent extends Component
         $this->dispatch('scroll-to-form');
     }
 
+    #[On('clear-flash')]
+    public function clearFlash()
+    {
+        $this->flashMessage = null;
+        $this->showFlash = false;
+    }
 
 
     protected function rules(): array
@@ -95,6 +104,7 @@ class CreateComponent extends Component
     {
         $data = $this->validate();
 
+        $isUpdate = $this->isEdit && $this->catId;
 
         if ($this->img) {
             $image = $this->imageUpload->upload(
@@ -153,20 +163,29 @@ class CreateComponent extends Component
 
 
 
-        if ($this->isEdit && $this->catId) {
-            $this->cats->update($this->catId, $data);
-            $this->flashMessage = 'Category updated successfully.';
-            //session()->flash('success', 'Category updated successfully.');
-            $this->dispatch('cat-updated');
-        } else {
-            $this->cats->create($data);
-            $this->flashMessage = 'Category created successfully.';
-            //session()->flash('success', 'Category created successfully.');
-            $this->dispatch('cat-created');
-        }
+    if ($isUpdate) {
+        $this->cats->update($this->catId, $data);
+        $messagex = 'Category updated successfully.';
+        $this->dispatch('cat-updated');
+    } else {
+        $this->cats->create($data);
+        $messagex = 'Category created successfully.';
+        $this->dispatch('cat-created');
+    }
 
-        $this->dispatch('scroll-to-cats');
-        $this->resetForm();
+    $this->flashMessage = "$messagex : $this->name";
+    $this->showFlash = true;
+    $this->flashKey++;
+    $this->dispatch('auto-hide-flash');
+
+
+    $this->dispatch('scroll-to-cats');
+
+    $this->resetForm();
+    $this->showForm = false;
+
+
+        
     }
 
 

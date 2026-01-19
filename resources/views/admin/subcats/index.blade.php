@@ -9,7 +9,7 @@
 @section('content')
 <div>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-6">
-        Categories
+        SubCategories
     </h2>
 
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -21,13 +21,9 @@
                 </div>
             @endif
 
-            <div id="cat-form">
-                @livewire('admin.cats.create-component')
-            </div>
-
-
+                
             <div id="cats-list">
-                @livewire('admin.cats.view-component')
+                @livewire('admin.subcats.subcat-component', ['catid' => $catid])
             </div>
 
         </div>

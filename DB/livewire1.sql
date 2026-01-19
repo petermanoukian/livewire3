@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 17, 2026 at 02:28 PM
+-- Generation Time: Jan 19, 2026 at 07:02 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.2.0
 
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1768640638;', 1768640638),
-('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1768640638);
+('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1768843093;', 1768843093),
+('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1768843093);
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `cats` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cats_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cats`
@@ -113,7 +113,50 @@ INSERT INTO `cats` (`id`, `name`, `des`, `dess`, `filer`, `img`, `img2`, `create
 (33, 'cat15', '', '', NULL, NULL, NULL, '2026-01-17 09:05:41', '2026-01-17 09:05:41'),
 (34, 'cat17', 'tytty', '<div>yytr</div>', NULL, NULL, NULL, '2026-01-17 09:25:24', '2026-01-17 09:25:24'),
 (35, 'cat18', '', '', NULL, NULL, NULL, '2026-01-17 09:30:26', '2026-01-17 09:30:26'),
-(36, 'ytytty', '', '', NULL, NULL, NULL, '2026-01-17 09:32:12', '2026-01-17 09:32:12');
+(36, 'ytytty', '', '', NULL, NULL, NULL, '2026-01-17 09:32:12', '2026-01-17 09:32:12'),
+(37, 'fromn inlkineee updddd', 'hhgghhhg', '', NULL, NULL, NULL, '2026-01-18 03:05:41', '2026-01-18 04:34:33'),
+(38, 'tytryty yuuyutuy', 'tytty', '', NULL, NULL, NULL, '2026-01-18 04:28:06', '2026-01-18 04:28:32'),
+(39, 'ytyyt', 'ytrytrytr', '', NULL, NULL, NULL, '2026-01-18 04:34:58', '2026-01-18 04:34:58'),
+(40, 'tyytyy yty yy', 'ytyt yyty yyyuuuu', '', NULL, NULL, NULL, '2026-01-18 04:38:21', '2026-01-18 04:44:01'),
+(41, 'rtrttr', 'et', '<div>yrttytr</div>', NULL, NULL, NULL, '2026-01-18 04:42:12', '2026-01-18 04:44:11'),
+(42, 'rtrrtr r ttyy', 'trrttr  rgere', '', NULL, NULL, NULL, '2026-01-18 04:43:25', '2026-01-18 04:48:48'),
+(43, 'rrerew', '', '', NULL, NULL, NULL, '2026-01-18 04:44:49', '2026-01-18 04:44:49'),
+(44, 'rtrtrt', 'trttre', '', NULL, NULL, NULL, '2026-01-18 04:48:30', '2026-01-18 04:48:30'),
+(45, 'tyyt', 'yy', '', NULL, NULL, NULL, '2026-01-18 04:49:43', '2026-01-18 04:49:43'),
+(46, 'rrerreerre', '', '', NULL, NULL, NULL, '2026-01-18 04:55:05', '2026-01-18 04:55:05'),
+(47, 'yytty', '', '<div><strong>ttrrt</strong></div>', NULL, NULL, NULL, '2026-01-18 04:55:35', '2026-01-18 04:55:35'),
+(48, 'ytytytr', '', '', NULL, NULL, NULL, '2026-01-18 04:55:48', '2026-01-18 04:55:48'),
+(49, 'rrere', '', '', NULL, NULL, NULL, '2026-01-18 05:01:04', '2026-01-18 05:01:04'),
+(50, 'trtrt', '', '', NULL, NULL, NULL, '2026-01-18 05:02:33', '2026-01-18 05:02:33'),
+(51, 'fgfgf upd2222', '', '', NULL, NULL, NULL, '2026-01-18 05:03:30', '2026-01-18 05:07:40'),
+(52, 'trtre upddd111', '', '', NULL, NULL, NULL, '2026-01-18 05:04:20', '2026-01-18 05:07:31'),
+(53, 'new cat3333', '', '', NULL, NULL, NULL, '2026-01-18 05:10:20', '2026-01-18 05:10:20'),
+(54, 'erere', '', '', NULL, NULL, NULL, '2026-01-18 05:11:12', '2026-01-18 05:11:12'),
+(55, 'ghghgf', '', '', NULL, NULL, NULL, '2026-01-18 05:14:12', '2026-01-18 05:14:12'),
+(56, 'ffdffddf', '', '', NULL, NULL, NULL, '2026-01-18 05:34:24', '2026-01-18 05:34:24'),
+(57, 'num5 upddd', '', '', NULL, NULL, NULL, '2026-01-18 05:35:43', '2026-01-18 05:35:54'),
+(58, 'num6', '', '', NULL, NULL, NULL, '2026-01-18 05:42:35', '2026-01-18 05:42:35'),
+(59, 'trt', 'trr', '', NULL, NULL, NULL, '2026-01-18 05:43:08', '2026-01-18 05:43:08'),
+(60, 'rtrttrtreer', '', '', NULL, NULL, NULL, '2026-01-18 05:43:24', '2026-01-18 05:43:24'),
+(61, 'trtrtrt', '', '', NULL, NULL, NULL, '2026-01-18 05:43:32', '2026-01-18 05:43:32'),
+(62, 'new77', '', '', NULL, NULL, NULL, '2026-01-18 05:47:15', '2026-01-18 05:47:15'),
+(63, 'num7', 'jjhjjhjh', '', NULL, NULL, NULL, '2026-01-18 05:51:11', '2026-01-18 05:51:11'),
+(64, 'trtrttrtrtererererew', '', '', NULL, NULL, NULL, '2026-01-18 05:52:01', '2026-01-18 05:53:18'),
+(65, 'trt3', '', '', NULL, NULL, NULL, '2026-01-18 05:52:22', '2026-01-18 05:52:22'),
+(66, 'trtrtrtrtr', '', '', NULL, NULL, NULL, '2026-01-18 05:53:06', '2026-01-18 05:53:06'),
+(67, 'trtrtretetrt', '', '', NULL, NULL, NULL, '2026-01-18 05:54:20', '2026-01-18 05:54:20'),
+(68, 'rt6677 yuuu789', '', '', NULL, NULL, NULL, '2026-01-18 05:54:45', '2026-01-18 05:54:59'),
+(69, 'new89', '', '', NULL, NULL, NULL, '2026-01-18 05:55:11', '2026-01-18 05:55:11'),
+(70, 'trtrtertt', '', '', NULL, NULL, NULL, '2026-01-18 05:55:58', '2026-01-18 05:55:58'),
+(71, 'f6778', '', '', NULL, NULL, NULL, '2026-01-18 05:56:46', '2026-01-18 05:56:46'),
+(72, '8888999956777', 'yyytr', '', NULL, NULL, NULL, '2026-01-18 06:00:35', '2026-01-18 06:04:06'),
+(73, 'tttrttter', '', '', NULL, NULL, NULL, '2026-01-18 06:01:12', '2026-01-18 06:01:12'),
+(74, 'gh34', '', '', NULL, NULL, NULL, '2026-01-18 06:03:32', '2026-01-18 06:03:32'),
+(75, 'gfgfgfg', '', '', NULL, NULL, NULL, '2026-01-18 06:03:57', '2026-01-18 06:03:57'),
+(76, '4123', '', '', NULL, NULL, NULL, '2026-01-18 06:06:49', '2026-01-18 06:06:49'),
+(77, '100', '', '', NULL, NULL, NULL, '2026-01-18 06:08:24', '2026-01-18 06:08:24'),
+(78, '111', '', '', NULL, NULL, NULL, '2026-01-18 06:09:58', '2026-01-18 06:09:58'),
+(79, 'new tilteeee', '', '', 'uploads/cats/files/new-tilteeee_696d3ef7ea8c9.jpg', 'uploads/cats/img/new-tilteeee-1768767222_696d3ef6bfc4d.jpg', 'uploads/cats/img/thumb/new-tilteeee-1768767222_696d3ef6bfc4d.jpg', '2026-01-18 06:10:46', '2026-01-18 16:13:43');
 
 -- --------------------------------------------------------
 
@@ -236,7 +279,53 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IVo39LlE2y1rriOuZICtq1NJm3Ypq34FTkIAlPeF', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoic0V4ZTYzV2pBSnIxYzFkSkVXTDBUWGllSE5GSmJWcWRHZ21iUXBnUCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRzIjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5jYXRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1768656908);
+('4pAxcsnIcz7DZNIY77i5ytrvdck2H5XhRYlqsqD9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSlpmVjJ3dUd5ejR0TllkSGRKUThaVGNrOHlXT24xMlE5dlhyUkRmZiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czo0MDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL3N1YmNhdHMvdmlldyI7czo1OiJyb3V0ZSI7czoxOToiYWRtaW4uc3ViY2F0cy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1768849316);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcats`
+--
+
+DROP TABLE IF EXISTS `subcats`;
+CREATE TABLE IF NOT EXISTS `subcats` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `catid` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `des` text COLLATE utf8mb4_unicode_ci,
+  `dess` longtext COLLATE utf8mb4_unicode_ci,
+  `img` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `filer` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subcats`
+--
+
+INSERT INTO `subcats` (`id`, `catid`, `name`, `des`, `dess`, `img`, `img2`, `filer`, `created_at`, `updated_at`) VALUES
+(1, 76, 'sub11', 'gfgfgf', '<div>ggf</div>', 'uploads/subcats/img/sub11-1768762583_696d2cd78b93b.jfif', 'uploads/subcats/img/thumb/sub11-1768762583_696d2cd78b93b.jfif', 'uploads/subcats/files/sub11_696d2cd7d1f7f.pdf', '2026-01-18 14:35:40', '2026-01-18 14:56:23'),
+(2, 78, 'ggh', 'hghgh', '', 'uploads/subcats/img/ggh-1768762122_696d2b0a99ebd.jpg', 'uploads/subcats/img/thumb/ggh-1768762122_696d2b0a99ebd.jpg', 'uploads/subcats/files/ggh_696d2b0be7a7c.jpg', '2026-01-18 14:48:43', '2026-01-18 14:48:43'),
+(3, 34, 'fgf', 'ggfgf', '<div>ggf</div>', NULL, NULL, NULL, '2026-01-18 15:03:00', '2026-01-18 15:03:00'),
+(4, 26, 'ytyt', '', '', NULL, NULL, NULL, '2026-01-18 15:04:01', '2026-01-18 15:04:01'),
+(5, 31, 'hghgh', 'ghgh', '', NULL, NULL, NULL, '2026-01-18 15:04:08', '2026-01-18 15:04:08'),
+(6, 10, 'ryyt', 'tytyt', '', NULL, NULL, NULL, '2026-01-18 15:58:18', '2026-01-18 15:58:18'),
+(7, 10, 'fgfg', '', '', NULL, NULL, NULL, '2026-01-18 15:58:43', '2026-01-18 15:58:43'),
+(8, 77, 'fgfgfd', 'fgggf', '', NULL, NULL, NULL, '2026-01-18 15:59:06', '2026-01-18 15:59:06'),
+(9, 79, 'ttytgjjhjh', 'yyttyyt', '', NULL, NULL, NULL, '2026-01-18 16:16:48', '2026-01-18 16:17:23'),
+(10, 72, 'uy', 'yuu', '', NULL, NULL, NULL, '2026-01-18 16:17:10', '2026-01-19 13:13:25'),
+(11, 28, 'trtrt', 'trtrtr', '<div>ttrert</div>', 'uploads/subcats/img/trtrt-1768842850_696e66626b7e1.jpg', 'uploads/subcats/img/thumb/trtrt-1768842850_696e66626b7e1.jpg', NULL, '2026-01-19 13:14:10', '2026-01-19 13:14:10'),
+(12, 34, 'newset 5555', '', '', NULL, NULL, NULL, '2026-01-19 13:14:43', '2026-01-19 13:14:43'),
+(13, 35, 'newest 6', 'yyu', '', NULL, NULL, NULL, '2026-01-19 13:15:58', '2026-01-19 13:37:27'),
+(14, 31, 'newest 6', 'ttt', '', 'uploads/subcats/img/newest-6-1768843047_696e6727ee2e3.jpg', 'uploads/subcats/img/thumb/newest-6-1768843047_696e6727ee2e3.jpg', 'uploads/subcats/files/newest-6_696e672859765.jpg', '2026-01-19 13:16:48', '2026-01-19 13:17:28'),
+(15, 28, 'newest 6', 'htytrey', '', NULL, NULL, NULL, '2026-01-19 13:18:39', '2026-01-19 13:18:39'),
+(16, 33, 'newest 6', '7767667', '', NULL, NULL, NULL, '2026-01-19 13:37:07', '2026-01-19 13:37:07'),
+(17, 76, 'ttrtrtr', '', '', NULL, NULL, NULL, '2026-01-19 13:48:16', '2026-01-19 13:48:16'),
+(18, 77, 'the 100', '', '', NULL, NULL, NULL, '2026-01-19 14:53:06', '2026-01-19 14:53:06'),
+(19, 10, 'uuyy', 'yuyty', '', NULL, NULL, NULL, '2026-01-19 15:01:36', '2026-01-19 15:01:56');
 
 -- --------------------------------------------------------
 
