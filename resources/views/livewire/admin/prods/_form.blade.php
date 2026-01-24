@@ -3,7 +3,7 @@
     <button type="button"
             wire:click="toggleForm"
             class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
-        {{ $showForm ? 'Hide Form' : 'Add New Subcategory' }}
+        {{ $showForm ? 'Hide Form' : 'Add New Product' }}
     </button>
 
 
@@ -32,17 +32,20 @@
     <!-- Form -->
     @if($showForm)
         <h3 class="text-lg font-semibold mb-4">
-            {{ $isEdit ? 'Edit Subcategory' : 'New Subcategory' }}
+            {{ $isEdit ? 'Edit Product' : 'New Product' }}
         </h3>
 
         <form wire:submit.prevent="save" enctype="multipart/form-data">
             <!-- Parent category dropdown -->
-
-
-            <!-- Parent category dropdown -->
-            <div class="mb-4"> 
-                <livewire:admin.cats.category-dropdown-component :catid="$catid" :key="'cat-dropdown-'.($subcatId ?? 'new')" />
+            <div class="mb-4">
+                <livewire:admin.cats.category-dropdown-component :catid="$catid" :key="'cat-dropdown-'.($prodId ?? 'new')" />
                 @error('catid') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+            </div>
+
+            <!-- Parent subcategory dropdown -->
+            <div class="mb-4">
+                <livewire:admin.subcats.sub-category-dropdown-component :subcatid="$subcatid" :catid="$catid" :key="'subcat-dropdown-'.($prodId ?? 'new')" />
+                @error('subcatid') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <!-- Name -->
@@ -54,7 +57,7 @@
                 @error('name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
 
-            <!-- Description -->
+                        <!-- Description -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700">Description</label>
                 <textarea wire:model="des"
@@ -124,3 +127,4 @@
         </form>
     @endif
 </div>
+

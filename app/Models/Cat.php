@@ -25,4 +25,10 @@ class Cat extends Model
     { 
         return $this->hasMany(Subcat::class, 'catid'); 
     }
+
+
+    public function catprods() 
+    { 
+        return $this->hasMany(Prod::class, 'catid'); 
+    }
 }

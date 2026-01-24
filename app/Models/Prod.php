@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subcat extends Model
+class Prod extends Model
 {
-    protected $table = 'subcats';
+    protected $table = 'prods';
 
     protected $fillable = [
         'catid',
+        'subcatid',
         'name',
         'des',
         'dess',
@@ -18,16 +19,15 @@ class Subcat extends Model
         'filer',
     ];
 
-    // Relation: Subcat belongs to Cat
-    public function cat()
+    // Relation: Prod belongs to Cat
+    public function prodcat()
     {
         return $this->belongsTo(Cat::class, 'catid');
     }
 
-    // Relation: Subcat has many Prods
-    public function subcatprods()
+    // Relation: Prod belongs to Subcat
+    public function prodsubcat()
     {
-        return $this->hasMany(Prod::class, 'subcatid');         
+        return $this->belongsTo(Subcat::class, 'subcatid');
     }
 }
-

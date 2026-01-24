@@ -1,6 +1,6 @@
 <div x-data="{ open: @entangle('open') }" class="relative w-full">
     <label class="block text-sm font-medium text-gray-700">
-        Category
+        Subcategory
     </label>
 
     <!-- Dropdown trigger -->
@@ -8,8 +8,8 @@
          @click="open = !open">
         <input
             type="text"
-            value="{{ $selectedCat ? $categories->firstWhere('id', $selectedCat)?->name : '' }}"
-            placeholder="Search categories..."
+            value="{{ $selectedSubcat ? $subcategories->firstWhere('id', $selectedSubcat)?->name : '' }}"
+            placeholder="{{ $catid ? 'Search subcategories...' : 'Select a category first' }}"
             class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
                    focus:outline-none focus:ring focus:ring-indigo-500"
             readonly
@@ -41,22 +41,22 @@
         </div>
 
         <ul>
-
-            @forelse($categories as $cat)
+            @forelse($subcategories as $subcat)
                 <li
-                    wire:click="selectCategory({{ $cat->id }}, '{{ addslashes($cat->name) }}')"
+                    wire:click="selectSubcat({{ $subcat->id }}, '{{ addslashes($subcat->name) }}')"
                     @click="$wire.set('search','')"  
                     class="px-3 py-2 cursor-pointer hover:bg-indigo-100
-                        {{ $selectedCat === $cat->id ? 'bg-indigo-200 font-semibold' : '' }}"
+                        {{ $selectedSubcat === $subcat->id ? 'bg-indigo-200 font-semibold' : '' }}"
                 >
-                    {{ $cat->name }}
+                    {{ $subcat->name }}
                 </li>
             @empty
-                <li class="px-3 py-2 text-gray-500">No categories found</li>
+                <li class="px-3 py-2 text-gray-500">
+                    {{ $catid ? 'No subcategories found' : 'Select a category first' }}
+                </li>
             @endforelse
-
-
         </ul>
+
 
         <!-- Close button -->
         <div class="border-t px-3 py-2 text-right">

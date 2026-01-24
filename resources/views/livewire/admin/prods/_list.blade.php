@@ -1,5 +1,5 @@
 <div class="mb-4 flex items-center gap-4">
-    <!-- Category Filter - Simple select, no component needed -->
+    <!-- Category Filter -->
     <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Category:</label>
         <select wire:model.live="catid" class="border rounded px-3 py-2">
@@ -9,12 +9,20 @@
             @endforeach
         </select>
     </div>
+
+    <!-- Subcategory Filter -->
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Subcategory:</label>
+        <select wire:model.live="subcatid" class="border rounded px-3 py-2">
+            <option value="">All Subcategories</option>
+            @foreach($subcats as $sub)
+                <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+            @endforeach
+        </select>
+    </div>
 </div>
 
 @include('livewire.admin.common._search')
-
-
-
 
 <form wire:submit.prevent="deleteSelected">
     <table class="table-auto w-full border-collapse border border-gray-300">
@@ -43,6 +51,12 @@
                     :order-direction="$orderDirection" />
 
                 <livewire:admin.sortable-th-component 
+                    field="subcatid" 
+                    label="Subcategory" 
+                    :order-field="$orderField" 
+                    :order-direction="$orderDirection" />
+
+                <livewire:admin.sortable-th-component 
                     field="name" 
                     label="Name" 
                     :order-field="$orderField" 
@@ -54,39 +68,37 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($records as $subcat)
+            @foreach($records as $prod)
                 <tr>
                     <td class="p-2 border text-center">
-                        <input type="checkbox" wire:model.live="selected" value="{{ $subcat->id }}">
+                        <input type="checkbox" wire:model.live="selected" value="{{ $prod->id }}">
                     </td>
-                    <td class="p-2 border">{{ $subcat->id }}</td>
-
+                    <td class="p-2 border">{{ $prod->id }}</td>
+                    <td class="p-2 border">{{ $prod->prodcat->name ?? 'N/A' }}</td>
+                    <td class="p-2 border">{{ $prod->prodsubcat->name ?? 'N/A' }}</td>
+                    <td class="p-2 border">{{ $prod->name }}</td>
                     <td class="p-2 border">
-                        {{ $subcat->cat->name ?? 'N/A' }}
-                    </td>
-                    <td class="p-2 border">{{ $subcat->name }}</td>
-                    <td class="p-2 border">
-                        @if($subcat->img2)
-                            <img src="{{ asset($subcat->img2) }}" alt="pic" class="h-20 w-28 rounded">
+                        @if($prod->img2)
+                            <img src="{{ asset($prod->img2) }}" alt="pic" class="h-20 w-28 rounded">
                         @else
                             -
                         @endif
                     </td>
                     <td class="p-2 border">
-                        @if($subcat->filer)
-                            <a href="{{ asset($subcat->filer) }}" target="_blank" class="text-indigo-600 underline">Download</a>
+                        @if($prod->filer)
+                            <a href="{{ asset($prod->filer) }}" target="_blank" class="text-indigo-600 underline">Download</a>
                         @else
                             -
                         @endif
                     </td>
                     <td class="p-2 border">
                         <button type="button"
-                                wire:click="$dispatch('edit-subcat', { id: {{ $subcat->id }} })"
+                                wire:click="$dispatch('edit-prod', { id: {{ $prod->id }} })"
                                 class="text-blue-600 mr-2 underline">
                             Edit
                         </button>
                         <button type="button"
-                                onclick="if(confirm('Are you sure you want to delete this subcategory?')) { @this.deleteOne({{ $subcat->id }}) }"
+                                onclick="if(confirm('Are you sure you want to delete this product?')) { @this.deleteOne({{ $prod->id }}) }"
                                 class="text-red-600 hover:underline">
                             Delete
                         </button>
@@ -99,7 +111,7 @@
     @if(count($selected) > 0)
         <div class="mt-4">
             <button type="submit"
-                    onclick="return confirm('Are you sure you want to delete selected subcategories?')"
+                    onclick="return confirm('Are you sure you want to delete selected products?')"
                     class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
                 Delete Selected
             </button>
@@ -110,3 +122,4 @@
 <div class="mt-4">
     {{ $records->links() }}
 </div>
+

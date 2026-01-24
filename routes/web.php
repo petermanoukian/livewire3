@@ -25,6 +25,7 @@ Route::get('/logout', function () {
 })->name('logoutget');
 
 
+
 Route::get('/test-full-page', TestFullPage::class);
 
 require __DIR__.'/auth.php';

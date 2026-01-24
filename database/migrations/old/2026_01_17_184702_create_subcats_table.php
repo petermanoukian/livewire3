@@ -16,27 +16,32 @@ return new class extends Migration
 
             // Foreign key to cats
             $table->unsignedBigInteger('catid');
+
+            // Subcategory name
             $table->string('name', 255);
+
+            // Optional description fields
             $table->text('des')->nullable();
             $table->longText('dess')->nullable();
             $table->string('img')->nullable();
             $table->string('img2')->nullable();
             $table->string('filer')->nullable();
+
             $table->timestamps();
-            $table->unique(['catid', 'name']);
+
+            // Unique constraint across catid + name
+            $table->unique(['catid', 'name'], 'unique_subcat_cat_name');
+
+            // Foreign key constraint
             $table->foreign('catid')
-                  ->references('id')
-                  ->on('cats')
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on('cats')
+                ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('subcats');
     }
 };
-

@@ -204,6 +204,22 @@ class SubcatRepository
             ->get();
     }
 
+    public function searchByCatIdAndName(
+        int $catid,
+        string $search,
+        array $fields = ['id', 'name'],
+        array $orderBy = ['name' => 'asc']
+    ) {
+        $query = Subcat::select($fields)
+            ->where('catid', $catid)
+            ->where('name', 'LIKE', '%' . $search . '%');
+
+        foreach ($orderBy as $column => $direction) {
+            $query->orderBy($column, $direction);
+        }
+
+        return $query->get();
+    }
 
 
 

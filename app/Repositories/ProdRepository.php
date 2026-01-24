@@ -1,21 +1,20 @@
 <?php
+
 namespace App\Repositories;
 
+use App\Models\Prod;
 use App\Models\Cat;
-use Illuminate\Support\Collection;
+use App\Models\Subcat;
 
-class CatRepository
+class ProdRepository
 {
-    /**
-     * Get all records
-     */
     public function all(
         array $fields = ['*'],
         array $filters = [],
         array $with = [],
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Prod::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -43,13 +42,12 @@ class CatRepository
         array $with = [],
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Prod::select($fields);
 
         if ($with) {
             $query->with($with);
         }
 
-       
         foreach ($filters as $field => $value) {
             if (is_string($value)) {
                 $query->where($field, 'like', "%{$value}%");
@@ -58,7 +56,6 @@ class CatRepository
             }
         }
 
-       
         foreach ($orderBy as $column => $direction) {
             $query->orderBy($column, $direction);
         }
@@ -74,7 +71,7 @@ class CatRepository
         string $boolean = 'or',
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Prod::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -82,7 +79,6 @@ class CatRepository
 
         $query->where(function ($q) use ($term, $includeDes, $boolean) {
             if (is_numeric($term)) {
-                // exact match on ID if numeric
                 $q->where('id', (int) $term);
             } else {
                 $q->where('name', 'like', "%{$term}%");
@@ -102,34 +98,6 @@ class CatRepository
         return $query->get();
     }
 
-
-    public function searchByName(
-        string $term,
-        array $fields = ['id', 'name'],
-        array $with = [],
-        array $orderBy = ['name' => 'asc'] // default
-    ): Collection
-    {
-        $query = Cat::select($fields);
-
-        if (!empty($with)) {
-            $query->with($with);
-        }
-
-        // Always search by name (string)
-        $query->where('name', 'like', "%{$term}%");
-
-        // Apply ordering dynamically
-        foreach ($orderBy as $column => $direction) {
-            $query->orderBy($column, $direction);
-        }
-
-        return $query->get();
-    }
-
-
-
-
     public function searchPaginated(
         string $term,
         int $perPage = 15,
@@ -139,7 +107,7 @@ class CatRepository
         string $boolean = 'or',
         array $orderBy = []
     ) {
-        $query = Cat::select($fields);
+        $query = Prod::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -166,10 +134,9 @@ class CatRepository
         return $query->paginate($perPage);
     }
 
-
     public function find(int $id, array $fields = ['*'], array $with = [])
     {
-        $query = Cat::select($fields);
+        $query = Prod::select($fields);
 
         if ($with) {
             $query->with($with);
@@ -178,9 +145,11 @@ class CatRepository
         return $query->findOrFail($id);
     }
 
-    public function existsByName(string $name, ?int $ignoreId = null): bool
+    public function existsByName(string $name, int $catid, int $subcatid, ?int $ignoreId = null): bool
     {
-        $query = Cat::where('name', $name);
+        $query = Prod::where('name', $name)
+                     ->where('catid', $catid)
+                     ->where('subcatid', $subcatid);
 
         if ($ignoreId) {
             $query->where('id', '!=', $ignoreId);
@@ -189,26 +158,47 @@ class CatRepository
         return $query->exists();
     }
 
+    public function getByCatId(int $catid, array $fields = ['*'], array $with = [])
+    {
+        $query = Prod::select($fields)->where('catid', $catid);
+
+        if ($with) {
+            $query->with($with);
+        }
+
+        return $query->get();
+    }
+
+    public function getBySubcatId(int $subcatid, array $fields = ['*'], array $with = [])
+    {
+        $query = Prod::select($fields)->where('subcatid', $subcatid);
+
+        if ($with) {
+            $query->with($with);
+        }
+
+        return $query->get();
+    }
 
     public function create(array $data)
     {
-        return Cat::create($data);
+        return Prod::create($data);
     }
 
     public function update(int $id, array $data)
     {
-        $cat = Cat::findOrFail($id);
-        $cat->update($data);
-        return $cat;
+        $prod = Prod::findOrFail($id);
+        $prod->update($data);
+        return $prod;
     }
 
     public function delete(int $id)
     {
-        return Cat::destroy($id);
+        return Prod::destroy($id);
     }
 
     public function deleteMany(array $ids)
     {
-        return Cat::destroy($ids);
+        return Prod::destroy($ids);
     }
 }

@@ -39,8 +39,8 @@
                     transition-opacity duration-200 
                     z-10">
             <ul class="py-2 text-sm text-gray-700">
-                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Add Product</a></li>
-                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Manage Products</a></li>
+                
+                <li><a href="{{ route('admin.prods.index') }}" class="block px-4 py-2 hover:bg-gray-100">Manage Products</a></li>
             </ul>
         </div>
     </div>

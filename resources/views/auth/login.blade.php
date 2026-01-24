@@ -51,12 +51,7 @@
 
     <!-- Actions -->
     <div class="flex items-center justify-between">
-        @if (Route::has('password.request'))
-            <a href="{{ route('password.request') }}"
-               class="text-sm text-gray-600 hover:text-gray-900 underline">
-                Forgot your password?
-            </a>
-        @endif
+
 
         <button type="submit"
                 class="h-12 px-6 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

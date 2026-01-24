@@ -13,5 +13,6 @@ Route::prefix('admin')
  
         require __DIR__ . '/classic/cat.php';
         require __DIR__ . '/classic/subcat.php';
+        require __DIR__ . '/classic/prod.php';
     });
 

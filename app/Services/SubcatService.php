@@ -60,6 +60,15 @@ class SubcatService
         );
     }
 
+    public function searchByCatIdAndName(
+        int $catid,
+        string $search,
+        array $fields = ['id', 'name'],
+        array $orderBy = ['name' => 'asc']
+    ) {
+        return $this->subcats->searchByCatIdAndName($catid, $search, $fields, $orderBy);
+    }
+
 
     /**
      * Search subcats with pagination
