@@ -13,8 +13,8 @@ class ProdValidation
                             'unique:prods,name,NULL,id,catid,' . $catid . ',subcatid,' . $subcatid],
             'des'       => ['nullable', 'string', 'max:500'],
             'dess'      => ['nullable', 'string', 'max:500'],
-            'img'       => ['nullable', 'image', 'max:55120'],
-            'filer'     => ['nullable', 'file', 'max:59200'],
+           'img'   => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp,tiff', 'max:55120'],
+            'filer' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,tiff,pdf,html,json,txt,doc,docx,xls,xlsx', 'max:59200'],
         ];
     }
 
@@ -27,8 +27,8 @@ class ProdValidation
                             'unique:prods,name,' . $id . ',id,catid,' . $catid . ',subcatid,' . $subcatid],
             'des'       => ['nullable', 'string', 'max:500'],
             'dess'      => ['nullable', 'string', 'max:500'],
-            'img'       => ['nullable', 'image', 'max:55120'],
-            'filer'     => ['nullable', 'file', 'max:59200'],
+            'img'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp,tiff', 'max:55120'],
+            'filer'     => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,tiff,pdf,html,json,txt,doc,docx,xls,xlsx', 'max:59200'],
         ];
     }
 
@@ -45,8 +45,10 @@ class ProdValidation
             'des.max'           => 'Description must not exceed 500 characters.',
             'dess.max'          => 'Secondary description must not exceed 500 characters.',
             'img.image'         => 'The uploaded image must be valid.',
+            'img.mimes'         => 'The image must be a file of type: jpg, jpeg, png, gif, webp, tiff.',
             'img.max'           => 'The image size exceeds the allowed limit.',
             'filer.file'        => 'The uploaded file must be valid.',
+            'filer.mimes'       => 'The file format is not allowed. Allowed formats: documents (pdf, html, json, txt, office docs) or web images.',
             'filer.max'         => 'The file size exceeds the allowed limit.',
         ];
     }

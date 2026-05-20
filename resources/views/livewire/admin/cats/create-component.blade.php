@@ -55,7 +55,8 @@
             <!-- Image upload -->
             <div class="w-1/2">
                 <label class="block text-sm font-medium text-gray-700">Image</label>
-                <input type="file" wire:model="img">
+                <input type="file" wire:model="img"
+                accept="image/jpeg,image/png,image/gif,image/webp,image/tiff">
                 @error('img') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
 
                 {{-- NEW preview when selecting --}}
@@ -73,7 +74,7 @@
             <!-- File upload -->
             <div class="w-1/2">
                 <label class="block text-sm font-medium text-gray-700">File</label>
-                <input type="file" wire:model="filer">
+                <input type="file" wire:model="filer" accept="image/*,.pdf,.html,.json,.txt,.doc,.docx,.xls,.xlsx">
                 @error('filer') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
 
                 @if($existingFile && !$filer)

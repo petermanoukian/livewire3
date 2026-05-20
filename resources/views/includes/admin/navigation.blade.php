@@ -11,12 +11,6 @@
                     transition-opacity duration-200 
                     z-10">
             <ul class="py-2 text-sm text-gray-700">
-                <li>
-                    <a href="{{ route('admin.cats.create') }}" 
-                    class="block px-4 py-2 hover:bg-gray-100">
-                        Add Category
-                    </a>
-                </li>
                 <li><a href="{{ route('admin.cats.index') }}" class="block px-4 py-2 hover:bg-gray-100">Manage Categories</a></li>
                 <li>
                     <a href="{{ route('admin.subcats.index') }}" 

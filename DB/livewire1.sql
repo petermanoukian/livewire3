@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 19, 2026 at 07:02 PM
+-- Generation Time: May 20, 2026 at 06:03 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.2.0
 
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1768843093;', 1768843093),
-('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1768843093);
+('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1769277919;', 1769277919),
+('laravel-cache-356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1769277919);
 
 -- --------------------------------------------------------
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -239,7 +239,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2026_01_13_181600_create_cats_table', 2);
+(4, '2026_01_13_181600_create_cats_table', 2),
+(6, '2026_01_23_172655_create_prods_table', 3);
 
 -- --------------------------------------------------------
 
@@ -254,6 +255,39 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prods`
+--
+
+DROP TABLE IF EXISTS `prods`;
+CREATE TABLE IF NOT EXISTS `prods` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `catid` bigint(20) UNSIGNED NOT NULL,
+  `subcatid` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `des` text COLLATE utf8mb4_unicode_ci,
+  `dess` longtext COLLATE utf8mb4_unicode_ci,
+  `img` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `filer` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_prod_cat_subcat_name` (`catid`,`subcatid`,`name`),
+  KEY `prods_subcatid_foreign` (`subcatid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `prods`
+--
+
+INSERT INTO `prods` (`id`, `catid`, `subcatid`, `name`, `des`, `dess`, `img`, `img2`, `filer`, `created_at`, `updated_at`) VALUES
+(1, 16, 20, 'prod1122 updateddd', 'fgfgffff', '', NULL, NULL, NULL, '2026-01-24 13:38:33', '2026-01-24 13:50:16'),
+(2, 72, 10, 'uyy', 'uyuyuyt', '', 'uploads/prods/img/uyy-1769277873_697509b107208.jpg', 'uploads/prods/img/thumb/uyy-1769277873_697509b107208.jpg', 'uploads/prods/files/uyy_697509b152291.pdf', '2026-01-24 13:59:53', '2026-01-24 14:04:33'),
+(3, 76, 17, 'prod444', 'jhjhj', '<div>jhjhj</div>', NULL, 'uploads/prods/img/thumb/prod444-1769277809_697509712d59f.jpg', 'uploads/prods/files/prod444_6975097243ade.pdf', '2026-01-24 14:03:30', '2026-01-24 14:03:42');
 
 -- --------------------------------------------------------
 
@@ -279,7 +313,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4pAxcsnIcz7DZNIY77i5ytrvdck2H5XhRYlqsqD9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSlpmVjJ3dUd5ejR0TllkSGRKUThaVGNrOHlXT24xMlE5dlhyUkRmZiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czo0MDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL3N1YmNhdHMvdmlldyI7czo1OiJyb3V0ZSI7czoxOToiYWRtaW4uc3ViY2F0cy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1768849316);
+('f1Nsn5udqklRRmrZ8AkypfmgH001WMoeAMohwJ4H', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSVllY0FTanR1cXlwUEIwT09CVjUwUUFHWXd6TkpNRW9aTmRvaXlDWSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcm9kcy92aWV3IjtzOjU6InJvdXRlIjtzOjE3OiJhZG1pbi5wcm9kcy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1769278091),
+('8U3fMlIdAcC7GeiYVQYTs6NYjY17RgfPO0W8Dgc2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.120.0 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiM2FaY25lUkdVRTFhVlpIRWZPb2ZrSjZVTTBjMjZzU0lVcnhGNXZ1RyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7czo1OiJyb3V0ZSI7czo1OiJsb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1779215871),
+('dKJhno79eUJSRgMYkKrMQSX9ynh85OLm5tdY0W7p', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUTVtUDJmbk84dGVYOFZtV2JhcWpYUFRTbnViWGRRd2c2Vk1PRjNJVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRzIjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5jYXRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1779216234);
 
 -- --------------------------------------------------------
 
@@ -300,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `subcats` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `subcats`
@@ -325,7 +361,9 @@ INSERT INTO `subcats` (`id`, `catid`, `name`, `des`, `dess`, `img`, `img2`, `fil
 (16, 33, 'newest 6', '7767667', '', NULL, NULL, NULL, '2026-01-19 13:37:07', '2026-01-19 13:37:07'),
 (17, 76, 'ttrtrtr', '', '', NULL, NULL, NULL, '2026-01-19 13:48:16', '2026-01-19 13:48:16'),
 (18, 77, 'the 100', '', '', NULL, NULL, NULL, '2026-01-19 14:53:06', '2026-01-19 14:53:06'),
-(19, 10, 'uuyy', 'yuyty', '', NULL, NULL, NULL, '2026-01-19 15:01:36', '2026-01-19 15:01:56');
+(19, 10, 'uuyy', 'yuyty', '', NULL, NULL, NULL, '2026-01-19 15:01:36', '2026-01-19 15:01:56'),
+(20, 16, 'updet222', 'trtrrt', '', NULL, NULL, NULL, '2026-01-24 13:10:15', '2026-01-24 13:14:31'),
+(21, 78, 'yytyt', 'ytyttryr', '', NULL, NULL, NULL, '2026-01-24 13:27:45', '2026-01-24 13:27:45');
 
 -- --------------------------------------------------------
 
@@ -352,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', NULL, '$2y$12$aQAFiHRAitLbME5vhf55quUOKq7s/Mwf29584GlANL3lZiFJDsawO', 'SxSlziAphSSRTVCCSVggKNN23STz3h8jKx0inO6nYtsU8FSErh8PZtmEaLgE', '2026-01-12 11:58:55', '2026-01-12 11:58:55');
+(1, 'admin', 'admin@admin.com', NULL, '$2y$12$aQAFiHRAitLbME5vhf55quUOKq7s/Mwf29584GlANL3lZiFJDsawO', 'dtqWhXYLUMWuJ6Z0N0JWQhbibw1BxUgxSzLzgTFwWAYQnOLDHXKGFPOLtDa6', '2026-01-12 11:58:55', '2026-01-12 11:58:55');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
